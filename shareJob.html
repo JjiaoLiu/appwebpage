@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>兼职详情</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+    <meta http-equiv="Pragma" content="no-cache"/>
+    <meta http-equiv="Cache-Control" content="no-cache"/>
+    <link rel="stylesheet" href="shareJob/index.css?v=6"/>
+    <script type="application/javascript">
+        var devicewidth = document.documentElement.clientWidth;
+        window.onload = window.onresize = function () {
+            document.querySelector('html').style.fontSize = 100 * devicewidth / 1080 + 'px';
+        };
+    </script>
+</head>
+<body>
+<div class="page">
+    <div class="topbar-wrap">
+        <div class="topbar-title">兼职详情</div>
+        <div class="topbar-body">
+            <p class="job" id="title-1"></p>
+            <p class="salary"><span id="salary"></span>豆/小时</p>
+            <p class="address"><span id="area">金水</span> | <span id="jobTypeName"></span></p>
+        </div>
+    </div>
+    <section class="zpyq">
+        <p class="tip">招聘要求</p>
+        <span class="tag">招<em id="recruitNum"></em>人</span><span class="tag">性别<em id="gender"></em></span>
+    </section>
+    <section class="gznr">
+        <p class="section-title">工作内容</p>
+        <p class="jobName">招聘<span id="title-2"></span></p>
+        <p class="content" id="content"></p>
+        <div class="divider"></div>
+        <p class="tip">小豆提示：凡收取费用的或工作内容不符的兼职，请你提高警惕并第一时间向我们举报。</p>
+    </section>
+    <section class="gzsj">
+        <p class="section-title">工作时间</p>
+        <div id="time"></div>
+        <div class="map"><span id="addressDetail"></span></div>
+        <p class="map-address">详细地址：<span id="address"></span></p>
+    </section>
+    <section class="gsxx">
+        <p class="section-title">公司信息</p>
+        <div class="gs-card">
+            <div class="image">
+                <img src="" alt="" id="logo">
+            </div>
+            <div class="content">
+                <p class="employerName" id="employerName"></p>
+                <p class="linkName">联系人：<span id="contact"></span></p>
+            </div>
+        </div>
+    </section>
+    <div class="bm" onclick="checkApp()">我要报名（<span id="offerNum"></span>人已报名）</div>
+</div>
+<script src="shareJob/jquery.min.js"></script>
+<script>
+    // Production steps of ECMA-262, Edition 5, 15.4.4.21
+    // Reference: http://es5.github.io/#x15.4.4.21
+    // https://tc39.github.io/ecma262/#sec-array.prototype.reduce
+    if (!Array.prototype.reduce) {
+        Object.defineProperty(Array.prototype, 'reduce', {
+            value: function (callback /*, initialValue*/) {
+                if (this === null) {
+                    throw new TypeError('Array.prototype.reduce ' +
+                        'called on null or undefined');
+                }
+                if (typeof callback !== 'function') {
+                    throw new TypeError(callback +
+                        ' is not a function');
+                }
+
+                // 1. Let O be ? ToObject(this value).
+                var o = Object(this);
+
+                // 2. Let len be ? ToLength(? Get(O, "length")).
+                var len = o.length >>> 0;
+
+                // Steps 3, 4, 5, 6, 7
+                var k = 0;
+                var value;
+
+                if (arguments.length >= 2) {
+                    value = arguments[1];
+                } else {
+                    while (k < len && !(k in o)) {
+                        k++;
+                    }
+
+                    // 3. If len is 0 and initialValue is not present,
+                    //    throw a TypeError exception.
+                    if (k >= len) {
+                        throw new TypeError('Reduce of empty array ' +
+                            'with no initial value');
+                    }
+                    value = o[k++];
+                }
+
+                // 8. Repeat, while k < len
+                while (k < len) {
+                    // a. Let Pk be ! ToString(k).
+                    // b. Let kPresent be ? HasProperty(O, Pk).
+                    // c. If kPresent is true, then
+                    //    i.  Let kValue be ? Get(O, Pk).
+                    //    ii. Let accumulator be ? Call(
+                    //          callbackfn, undefined,
+                    //          « accumulator, kValue, k, O »).
+                    if (k in o) {
+                        value = callback(value, o[k], k, o);
+                    }
+
+                    // d. Increase k by 1.
+                    k++;
+                }
+
+                // 9. Return accumulator.
+                return value;
+            }
+        });
+    }
+
+    function isWeiXin() {
+        var ua = window.navigator.userAgent.toLowerCase();
+        if (ua.match(/MicroMessenger/i) == 'micromessenger') {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function parseParams(query) {
+        let params = {}, e;
+        var re = /([^&=]+)=?([^&]*)/g,
+            decodeRE = /\+/g,
+            decode = function (str) {
+                return decodeURIComponent(str.replace(decodeRE, " "));
+            };
+        while (e === re.exec(query)) params[decode(e[1])] = decode(e[2]);
+        return params;
+    }
+
+    let id = parseParams(window.location.search.split('?')[1]).id;
+
+    const ROOTURL = "http://app.jxd007.cn/";
+    // const ROOTURL = "http://192.168.0.100:8080/";
+
+    $.ajax({
+        url: ROOTURL + "search/job/" + id, //请求的url地址
+        dataType: "json",
+        async: true,
+        type: "GET",
+        success: function (req) {
+            $("#address").html(`${req.data.province}${req.data.city}${req.data.area}${req.data.addressDetail}`);
+            $("#addressDetail").html(req.data.addressDetail);
+            $("#area").html(req.data.area);
+            $("#contact").html(req.data.contact);
+            $("#content").html(req.data.content);
+            $("#employerName").html(req.data.employerName);
+            $("#jobTypeName").html(req.data.jobTypeName);
+            $("#title-1,#title-2").html(req.data.title);
+            $("#gender").html(req.data.gender);
+            $("#offerNum").html(req.data.offerNum);
+            $("#salary").html(req.data.salary);
+            $("#recruitNum").html(req.data.recruitNum);
+            $("#logo").attr("src", ROOTURL + req.data.logo);
+            let datesHtml = new Array();
+            let timesHtml = new Array();
+            let datesArr = new Array();
+            let arr = new Array();
+            let oneday = 60 * 60 * 24 * 1000;
+            (JSON.parse(req.data.datesJson)).reduce(function (pre, next, index, array) {
+                if (!arr.includes(pre)) {
+                    arr.push(pre);
+                }
+                let p = pre.replace(/-/g, '/');
+                let n = next.replace(/-/g, '/');
+
+                if ((Date.parse(n) - Date.parse(p)) === oneday) {
+                    arr.push(next);
+                    if (index === (array.length - 1)) {
+                        datesArr.push(arr);
+                    }
+                } else {
+                    datesArr.push(arr);
+                    arr = new Array();
+                    console.log(`arr = new Array(),${arr}`);
+                    if (index === (array.length - 1)) {
+                        arr.push(next);
+                        datesArr.push(arr);
+                    }
+                }
+                return next
+            });
+            JSON.parse(req.data.timesJson).forEach(function (f) {
+                timesHtml.push(`<span class="time">${f.start}-${f.end}</span>`);
+            });
+            datesArr.forEach(function (f) {
+                datesHtml.push(`<div class="time-wrap" ><p class="start-date"><span class="label">开始日期</span>${f[0]}</p><div class="timesHtml">${timesHtml.join('')}</div><span class="line"></span><p class="end-date"><span class="label">结束日期</span>${f[f.length - 1]}</p></div>`);
+            });
+            $("#time").html(datesHtml)
+        },
+        error: function (err) {
+            console.log('请求失败+++++++++++++++');
+            console.log(err)
+        }
+    });
+
+    function checkApp() {
+        if (isWeiXin()) {
+            alert('请用浏览器打开');
+            return false;
+        }
+        try {
+            window.location.href = 'launchapp://jobDetails?data=' + id;
+            setTimeout(function () {
+                window.location = 'http://app.jxd007.cn/index.html';
+            }, 500);
+        } catch (e) {
+            window.location.href = 'http://app.jxd007.cn/index.html';
+        }
+    }
+</script>
+</body>
+</html>

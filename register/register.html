@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>小豆青年</title>
+    <link rel="stylesheet" type="text/css" href="Promotion/index.css" />
+    <script src="Promotion/jquery.min.js"></script>
+</head>
+<body>
+<div class="page" id="page">
+    <div class="huge">
+        <img src="Promotion/huge.png" />
+    </div>
+    <div class="register">
+        <div class="form">
+            <div class="input-item">
+                <div class="icon"><img src="Promotion/icon_phone.png" class="icon_phone"></div>
+                <div class="input">
+                    <input type="tel" name="phone" id="phone" placeholder="请输入手机号" />
+                </div>
+            </div>
+            <div class="input-item">
+                <div class="icon"><img src="Promotion/icon_password.png" class="icon_password"></div>
+                <div class="input">
+                    <input type="tel" name="text" id="code" placeholder="请输入验证码" />
+                    <div class="get-code small-btn" onclick="sendValidateCode()">获取验证码</div>
+                </div>
+            </div>
+        </div>
+        <div class="large-btn get-cash" onclick="promotionRegister()">领取现金</div>
+    </div>
+    <div class="results" style="display: none;">
+        <div class="result">2元现金红包已放入<font id='userPhone'></font>账户</div>
+        <div class="large-btn" onclick='checkApp()'>去提现</div>
+    </div>
+</div>
+<script type="application/javascript">
+        const ROOTURL = "http://app.jxd007.cn/";
+
+        // const ROOTURL = "http://192.168.0.100:8080/";
+
+        let referrer = getRequest().referrer;
+
+        let send = true;
+        let num = 60;
+        let timer = null;
+
+        function getRequest(){
+            var url = location.search;   //获取url中"?"符后的字串   
+            var theRequest = new Object();
+            if (url.indexOf("?") != -1) {
+                var str = url.substr(1);
+                strs = str.split("&");
+                for (var i = 0; i < strs.length; i++) {
+                    theRequest[strs[i].split("=")[0]] = unescape(strs[i].split("=")[1]);
+                }
+            }
+            return theRequest;
+         }
+
+        function toDownload(){
+            window.location.href = ROOTURL+'index.html';
+        }
+
+        function setInter(){
+           send = false;
+           timer = null;
+           timer = setInterval(function(){
+                if(num > 0){
+                    $(".get-code").html(num+"s");
+                    num--;
+                }else{
+                    $(".get-code").html("获取验证码");
+                    send = true;
+                    num = 60;
+                    clearInterval(timer)
+                }
+            },1000)
+        }
+
+        function checkPhone(value){
+            let reg = /^1[3456789]\d{9}$/g;
+            return reg.test(value);
+        }
+
+        function secretPhone(value){
+            let reg = /^(\d{3})(\d{4})(\d{4})$/g;
+            return value.replace(reg,function(match,$1,$2,$3){
+                return $1+'****'+'$3'
+            })
+        }
+
+        function sendValidateCode(){
+            if(!send){ return false}
+
+            if(!checkPhone($('#phone').val())){
+                alert('手机号格式不正确')
+                return false;
+            }
+
+            ajax('send-validate-code',
+                {deviceId:'null',phone:$("#phone").val(),smsType:0},
+                function(){
+                    alert('发送成功');
+                    setInter()
+                }
+            )
+        }
+
+        function checkApp() {
+            if (isWeiXin()) {
+                alert('请用浏览器打开');
+                return false;
+            }
+            try {
+                window.location.href = 'intent://app.jxd007.cn#Intent;scheme=http;package=com.jxqm.jiangdou;end'
+                setTimeout(function () {
+                    window.location = 'http://app.jxd007.cn/index.html';
+                }, 500);
+            } catch (e) {
+                window.location.href = 'http://app.jxd007.cn/index.html';
+            }
+        }
+
+        function promotionRegister(){
+            if(!$("#code").val()){
+                alert("请先获取验证码");
+                return false;
+            }
+            ajax('register',{deviceId:'null',referrer:referrer,phone:$("#phone").val(),smsCode:$('#code').val()},function(){
+                $(".register").hide();
+                $(".results").show();
+                var phone = secretPhone($("#phone").val());
+                $("#userPhone").html(phone);
+            })
+        }
+
+        // app.jxd007.cn/promotion/register?referrer=xxx
+
+        function ajax(url,data,callback) {
+            $.ajax({
+                url: ROOTURL + url,
+                dataType: "json",
+                contentType: 'application/json',
+                data:JSON.stringify(data),
+                async: true,
+                type: "POST",
+                success: function (res) {
+                   if(res.code === 0){
+                       callback()
+                   }else{
+                       alert(res.message);
+                   }
+                },
+                error: function (err) {
+                    alert(JSON.parse(err.responseText).message);
+                },
+            });
+        }
+</script>
+</body>
+</html>

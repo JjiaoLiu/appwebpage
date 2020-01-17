@@ -1,0 +1,246 @@
+body {
+  margin: 0; }
+
+html {
+  font-size: 100px;
+  -webkit-text-size-adjust: 100% !important;
+  -webkit-font-smoothing: antialiased; }
+
+em {
+  font-style: normal; }
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  font-family: -apple-system, "Helvetica Neue", Helvetica, STHeiTi, sans-serif; }
+
+.page {
+  margin: 0 auto 1.61rem;
+  background: #F9FAFC;
+  color: #373737;
+  overflow: hidden; }
+
+.topbar-wrap {
+  height: 5.30rem;
+  background: url("tabbar-bg.png") center center no-repeat;
+  color: #ffffff;
+  background-size: cover; }
+
+.topbar-title {
+  height: 1.68rem;
+  font-size: 0.48rem;
+  line-height: 1.68rem;
+  text-align: center; }
+
+.topbar-body {
+  padding-top: 0.25rem;
+  padding-left: 0.43rem; }
+  .topbar-body .job {
+    font-size: 0.58rem;
+    line-height: 0.81rem;
+    padding-bottom: 0.05rem; }
+  .topbar-body .salary {
+    font-size: 0.46rem;
+    line-height: 0.65rem;
+    color: #FFC970;
+    margin-bottom: 0.05rem; }
+  .topbar-body .address {
+    font-size: 0.34rem;
+    line-height: 0.48rem; }
+
+.zpyq {
+  background: #ffffff;
+  padding: 0.49rem 0.58rem 0.52rem 0.39rem;
+  margin-bottom: 0.26rem;
+  font-size: 0; }
+  .zpyq .tip {
+    font-size: 0.34rem;
+    color: #BFC4CB;
+    padding-bottom: 0.15rem;
+    line-height: 0.48rem; }
+  .zpyq .tag {
+    height: 0.57rem;
+    border: 0.02rem solid #82A2FE;
+    border-radius: 0.06rem;
+    color: #82A2FE;
+    text-align: center;
+    margin-right: 0.18rem;
+    display: inline-block;
+    line-height: 0.57rem;
+    font-size: 0.28rem;
+    padding: 0 0.12rem; }
+
+.section-title {
+  padding-left: 0.24rem;
+  position: relative;
+  font-size: 0.44rem;
+  line-height: 0.50rem; }
+  .section-title:before {
+    content: '';
+    display: table;
+    background: #82A2FE;
+    width: 0.12rem;
+    height: 0.50rem;
+    position: absolute;
+    left: 0;
+    top: 0; }
+  .section-title:after {
+    content: '';
+    display: table;
+    background: #e2e2e2;
+    width: calc(100% - 2.3rem);
+    position: absolute;
+    height: 1px;
+    top: 0.24rem;
+    left: 2.21rem; }
+
+.gznr {
+  background: #ffffff;
+  padding: 0.49rem 0.58rem 0.52rem 0.39rem;
+  margin-bottom: 0.35rem; }
+  .gznr .jobName {
+    font-size: 0.44rem;
+    line-height: 0.62rem;
+    padding-bottom: 0.39rem;
+    padding-top: 0.36rem; }
+  .gznr .content {
+    font-size: 0.38rem;
+    color: #373737;
+    text-align: left;
+    line-height: 0.67rem;
+    padding-bottom: 0.30rem; }
+  .gznr .tip {
+    padding-top: 0.36rem;
+    font-size: 0.32rem;
+    color: #82A2FE;
+    line-height: 0.45rem; }
+
+.gzsj {
+  background: #ffffff;
+  margin-bottom: 0.35rem;
+  padding: 0.49rem 0.58rem 0.74rem 0.39rem; }
+  .gzsj .time-wrap {
+    margin-top: 0.58rem;
+    padding-bottom: 0.70rem;
+    font-size: 0;
+    position: relative;
+    left: 0;
+    top: 0; }
+  .gzsj .line {
+    width: 0.04rem;
+    height: 1.36rem;
+    background-color: #82A2FE;
+    position: absolute;
+    left: 2.19rem;
+    top: 0.39rem; }
+  .gzsj .map {
+    background: url("map-bg.jpg") no-repeat center center;
+    background-size: cover;
+    width: 100%;
+    height: 1.88rem;
+    display: flex;
+    align-items: center;
+    justify-content: center; }
+    .gzsj .map span {
+      width: 8.92rem;
+      height: 0.90rem;
+      background: #FFFFFF;
+      box-shadow: 0 0.02rem 0.08rem 0 #82A2FE;
+      line-height: 0.90rem;
+      border-radius: 45rem;
+      font-size: 0.37rem;
+      color: #6D6D6D;
+      text-align: left;
+      padding-left: 1.08rem;
+      position: relative;
+      left: 0;
+      top: 0; }
+      .gzsj .map span:before {
+        content: '';
+        background: url("icon_location.png") no-repeat center center;
+        background-size: cover;
+        width: 0.44rem;
+        height: 0.54rem;
+        display: table;
+        position: absolute;
+        left: 0.36rem;
+        top: 0.15rem; }
+  .gzsj .map-address {
+    font-size: 0.38rem;
+    line-height: 0.53rem;
+    padding-top: 0.35rem; }
+  .gzsj .timesHtml {
+    padding-left: 2.63rem; }
+  .gzsj .start-date, .gzsj .end-date, .gzsj .time {
+    padding-bottom: 0.35rem;
+    font-size: 0.36rem;
+    line-height: 0.50rem; }
+  .gzsj .time {
+    display: inline-block;
+    padding-right: 0.20rem; }
+  .gzsj .label {
+    font-size: 0.38rem;
+    line-height: 0.53rem;
+    padding-right: 1.15rem;
+    position: relative;
+    display: inline-block;
+    left: 0;
+    top: 0; }
+    .gzsj .label:before {
+      content: '';
+      display: table;
+      position: absolute;
+      left: 1.98rem;
+      border: 0.06rem solid #82A2FE;
+      border-radius: 50%;
+      width: 0.33rem;
+      height: 0.33rem; }
+    .gzsj .label:first-child:after {
+      content: '';
+      display: table;
+      width: 0.03rem;
+      top: 0.33rem;
+      left: 2.14rem; }
+
+.gsxx {
+  background: #ffffff;
+  margin-bottom: 0.09rem;
+  padding: 0.49rem 0.58rem 0.74rem 0.39rem; }
+  .gsxx .gs-card {
+    margin-top: 0.57rem;
+    display: flex;
+    padding: 0.39rem 0.34rem;
+    background: #F9FAFC; }
+  .gsxx .image {
+    width: 1.25rem;
+    height: 1.25rem; }
+    .gsxx .image img {
+      width: 100%;
+      height: 100%;
+      border: none; }
+  .gsxx .content {
+    font-size: 0.40rem;
+    line-height: 0.56rem;
+    color: #474747;
+    padding-left: 0.30rem; }
+    .gsxx .content p:first-child {
+      padding-bottom: 0.18rem; }
+
+.bm {
+  background: #81A2FE;
+  height: 1.61rem;
+  text-align: center;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  line-height: 1.61rem;
+  width: 100%;
+  font-size: 0.44rem;
+  color: #FFFFFF;
+  cursor: pointer; }
+
+.divider {
+  padding: 0 0.52rem 0 0.52rem;
+  background-color: #e2e2e2;
+  height: 0.01rem;
+  min-height: 1px; }

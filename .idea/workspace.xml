@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="7ff1d728-ea92-4632-819c-e27d99739d41" name="Default Changelist" comment="" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="SCSS File" />
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="1QgHXTbkVN7xhvOuo1rNUrQOq4i" />
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="NewWatcherDialog.advanced.open" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="list.type.of.created.stylesheet" value="SCSS" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="watcher.settings" />
+    <property name="show.migrate.to.gradle.popup" value="false" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\workSpace\appwebpage\activities\Wzxdqn" />
+      <recent name="F:\workSpace\appwebpage\JobSearchGuideImg" />
+      <recent name="F:\workSpace\appwebpage\activities\Xuanchuan" />
+      <recent name="F:\workSpace\appwebpage\activities\QingchunYouni" />
+      <recent name="F:\workSpace\appwebpage\activities\RescuePlan" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\workSpace\appwebpage\activities\RescuePlan" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="7ff1d728-ea92-4632-819c-e27d99739d41" name="Default Changelist" comment="" />
+      <created>1568185358754</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1568185358754</updated>
+      <workItem from="1568185359895" duration="4727000" />
+      <workItem from="1568190169506" duration="62000" />
+      <workItem from="1568190245824" duration="128000" />
+      <workItem from="1568190389847" duration="2151000" />
+      <workItem from="1568251281563" duration="763000" />
+      <workItem from="1569465084496" duration="1251000" />
+      <workItem from="1569484120182" duration="16000" />
+      <workItem from="1571818003527" duration="6613000" />
+      <workItem from="1571824737723" duration="18000" />
+      <workItem from="1571878508277" duration="15449000" />
+      <workItem from="1571901566224" duration="9654000" />
+      <workItem from="1571965289779" duration="14934000" />
+      <workItem from="1571995738410" duration="620000" />
+      <workItem from="1572230847088" duration="4185000" />
+      <workItem from="1572312321897" duration="2119000" />
+      <workItem from="1572315335676" duration="4068000" />
+      <workItem from="1572398061783" duration="1831000" />
+      <workItem from="1573195477876" duration="9660000" />
+      <workItem from="1573433916413" duration="3765000" />
+      <workItem from="1573454345982" duration="1092000" />
+      <workItem from="1573520794088" duration="1158000" />
+      <workItem from="1573541052452" duration="610000" />
+      <workItem from="1573609299976" duration="4573000" />
+      <workItem from="1574903659506" duration="1580000" />
+      <workItem from="1574905902363" duration="166000" />
+      <workItem from="1575856565425" duration="3834000" />
+      <workItem from="1576027458954" duration="2729000" />
+      <workItem from="1576133869732" duration="2945000" />
+      <workItem from="1576545847012" duration="131000" />
+      <workItem from="1576725881059" duration="158000" />
+      <workItem from="1576825500921" duration="350000" />
+      <workItem from="1576830654832" duration="1896000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+</project>

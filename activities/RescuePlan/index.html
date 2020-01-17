@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>梦想拯救计划</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+    <meta http-equiv="Pragma" content="no-cache"/>
+    <meta http-equiv="Cache-Control" content="no-cache"/>
+    <link rel="stylesheet" href="index.css?v=1"/>
+    <script type="application/javascript">
+        var devicewidth = document.documentElement.clientWidth;
+        window.onload = window.onresize = function () {
+            document.querySelector('html').style.fontSize = 100 * devicewidth / 1080 + 'px';
+        };
+    </script>
+    <script src="../jquery.min.js"></script>
+</head>
+<body>
+<section class="section-1"></section>
+<section class="section-2">
+    <input type="text" id="name" name="name" required placeholder="请输入您的真实姓名" maxlength="5"/>
+    <input type="text" id="phone" name="phone" required placeholder="请输入您的联系电话" maxlength="11"/>
+    <textarea name="content" maxlength="150" required placeholder="请输入您的梦想" id="content"></textarea>
+    <input type="text" id="amount" name="amount" required placeholder="请输入以万为单位的资金数"/>
+</section>
+<section class="section-3"></section>
+<section class="section-4">
+    <textarea name="advise" maxlength="150" placeholder="您的建议是我们前进的动力" id="advise"></textarea>
+</section>
+<section class="section-5">
+    <div id="submit" class="submit"></div>
+</section>
+<script type="application/javascript">
+    const ROOTURL = "http://app.jxd007.cn/";
+    let token = window.android.getToken();
+    if (!token) {
+        alert('小豆青年：未登录，请先登录。');
+        setTimeout(function () {
+            window.android.backHome();
+        }, 2000)
+    }
+    $('#submit').click(function () {
+        if (!$.trim($('#name').val())) {
+            alert('请输入您的真实姓名');
+            return false
+        }
+        if (!$.trim($('#phone').val())) {
+            alert('请输入您的联系电话');
+            return false
+        }
+        if (!$.trim($('#content').val())) {
+            alert('请输入您的梦想');
+            return false
+        }
+        if (!$.trim($('#amount').val())) {
+            alert('请输入以万为单位的资金数');
+            return false
+        }
+        if (checkPhone()) {
+            req();
+        }
+        return false;
+    });
+
+    function req() {
+        $.ajax({
+            url: ROOTURL + "rescue-plan",
+            dataType: "json",
+            contentType: 'application/json',
+            beforeSend: function (request) {
+                request.setRequestHeader('Authorization', 'Bearer ' + token)
+            },
+            async: true,
+            type: "POST",
+            data: JSON.stringify({
+                "item": "1",
+                "advise": $('#advise').val(),
+                "amount": $('#amount').val(),
+                "content": $('#content').val(),
+                "name": $('#name').val(),
+                "phone": $('#phone').val()
+            }),
+            success: function () {
+                alert('提交成功');
+
+            },
+            error: function (err) {
+                alert(JSON.parse(err.responseText).message);
+            },
+            statusCode: {
+                401: function () {
+                    // alert("请先登录");
+                },
+                403: function () {
+                    // alert("请重新登录");
+                }
+            }
+        });
+    }
+
+    function checkPhone() {
+        let phone = document.getElementById('phone').value;
+        if (!(/^1[3456789]\d{9}$/.test(phone))) {
+            alert("手机号码有误，请重填");
+            return false;
+        }
+        return true
+    }
+</script>
+</body>
+</html>
